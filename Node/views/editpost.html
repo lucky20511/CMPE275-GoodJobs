@@ -27,28 +27,23 @@
                             <div class="header">
                                 <h4 class="text-muted"><i class="pe-7s-note2"></i> 
                                 Edit Post
-                                <% if(!locals.params){ %>
-                                    =no job ID=
-                                <% } else { %>
-                                    <%= params %>
-                                <% } %>
+                                
                                 </h4>
                             </div>
 
                             <div class="content table-responsive">
 
-                            <% if(!locals.params){ %>
-                                <h1>no job ID</h1> <br> 
-                                <%= params %>
-                            <% } else {%>
+                            
 
                             <div class="content" ng-controller="myCtrl">
-                                <form ng-show="job">
+                                <form action="editpost?jobId=<%= data.pid %>" method="POST">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Job Title</label>
-                                                <input type="text" class="form-control"  placeholder="jobtitle" name="jobtitle" value="{{job.ID}}">
+                                                <input type="text" class="form-control"  placeholder="jobtitle" name="jobtitle" <% if(data.title) { %> 
+                                                     value="<%= data.title %>"
+                                                    <% } %>">
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +52,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Office Location</label>
-                                                <input type="text" class="form-control" placeholder="officelocation" name="officelocation" value="{{job.Name}}">
+                                                <input type="text" class="form-control" placeholder="officelocation" name="officelocation" <% if(data.officeLocation) { %> 
+                                                     value="<%= data.officeLocation %>"
+                                                    <% } %>">
                                             </div>
                                         </div>
                                     </div>
@@ -65,7 +62,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Salary</label>
-                                                <input type="text" class="form-control" placeholder="salary" name="salary" value="{{job.Salary}}">
+                                                <input type="text" class="form-control" placeholder="salary" name="salary" <% if(data.salary) { %> 
+                                                     value="<%= data.salary %>"
+                                                    <% } %>">
                                             </div>
                                         </div>
                                     </div>
@@ -74,8 +73,9 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label>Responsibility</label>
-                                                <textarea type="text" class="form-control"  placeholder="responsibility" name="responsibility">{{job.Country}}
-                                                </textarea>
+                                                <input type="text" class="form-control"  placeholder="responsibility" name="responsibility" <% if(data.responsibility) { %> 
+                                                     value="<%= data.responsibility %>"
+                                                <% } %>">
                                             </div>
                                         </div>
                                     </div>
@@ -84,8 +84,9 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label>Description</label>
-                                                <textarea type="text" class="form-control"  placeholder="description" name="description">{{job.City}}
-                                                </textarea>
+                                                <input type="text" class="form-control"  placeholder="description" name="description" <% if(data.description) { %> 
+                                                     value="<%= data.description %>">
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -98,8 +99,6 @@
                                 </form>
                             </div>
 
-
-                                <% } %>
 
                                  <button class="btn btn-info btn-fill" onclick="goBack()">Go Back
                                 </button>
@@ -128,19 +127,19 @@
 
 <script>
 var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope, $http) {
-    $http.get("job").success(function (response){
-            $scope.job = response;
-        }
-    );
-});
+// app.controller('myCtrl', function($scope, $http) {
+//     $http.get("job").success(function (response){
+//             $scope.job = response;
+//         }
+//     );
+// });
 </script>
 	<!-- <script type="text/javascript">
     	$(document).ready(function(){
 
         	demo.initChartist();
 
-        	$.notify({
+        	$.notify({;
             	icon: 'pe-7s-gift',
             	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
 

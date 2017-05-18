@@ -25,62 +25,145 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card" ng-controller="myCtrl">
 
 
                             <div class="header">
                                 <h4 class="text-muted"><i class="pe-7s-search"></i> Search Jobs</h4>
-                            </div>
-
-                            <div class ="col-md-4">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit"><i class="pe-7s-search"></i></button>
+                            
+                                <form action="/jobsearch" method="POST">
+                                    <div class="row">
+                                        <div class ="col-md-4">
+                                            <label>Title</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search" name="title" id="srch-term" ng-model="title" ng-change="myFunction()">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"><i class="pe-7s-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class ="col-md-4">
+                                             <label>Company</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search" name="companyname" id="srch-term" ng-model="companyname" ng-change="myFunction()">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"><i class="pe-7s-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class ="col-md-3">
+                                            <label>Salary Start</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search" name="salarystart" id="srch-term" ng-model="salarystart" ng-change="myFunction()">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"><i class="pe-7s-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
-                                </div>
-                            </div>
-                            <div class ="col-md-3">
-                            <form>
-                                <div class="form-group">
-                                  <select class="form-control" id="sel3">
-                                    <option>Company</option>
-                                    <option>Salary</option>
-                                    <option>Job Title</option>
-                                  </select>
-                                </div>
-                            </form>
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class ="col-md-4">
+                                            <label>Skills</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search" name="skill" id="srch-term" ng-model="skill" ng-change="myFunction()">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"><i class="pe-7s-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class ="col-md-4">
+                                            <label>Location</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search" name="location" id="srch-term" ng-model="location" ng-change="myFunction()">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"><i class="pe-7s-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class ="col-md-3">
+                                            <label>Salary End</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search" name="salaryend" id="srch-term" ng-model="salaryend" ng-change="myFunction()">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"><i class="pe-7s-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <!-- <div class="row">
+                                        <div class="col-md-11">
+                                            <button type="submit" class="btn btn-info btn-fill pull-right">Search <i class="pe-7s-search"></i></button> 
+                                        </div>
+                                    </div> -->
+                                </form>
 
                             </div>
 
-
+                            
                             <div class="content table-responsive">
-                                <br><br>
-                                <table class="table table-hover"  ng-controller="myCtrl" ng-show="jobs.length > 0">
-                                    <thead>
-                                        <th>ID</th>
-                                        <th>jobtitle</th>
-                                        <th>description</th>
-                                        <th>responsibility</th>
-                                        <th>officelocation</th>
-                                        <th>salary</th>
-                                        <th></th>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="x in jobs">
-                                            <td>{{x.ID}}</td>
-                                            <td>{{x.Name}}</td>
-                                            <td>${{x.Salary}}</td>
-                                            <td>{{x.Country}}</td>
-                                            <td>{{x.City}}</td>
-                                            <td>{{x.City}}</td>
-                                            <td><a href="jobdetail?jobId={{x.ID}}">More</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
+                                <!-- <% if(data.length > 0) { %>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>jobtitle</th>
+                                            <th>officelocation</th>
+                                            <th>salary</th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody>
+                                            <% for(var i = 0; i < data.length; i++) { %>
+                                            <tr>
+                                                <td><%=data[i].pid%></td>
+                                                <td><%=data[i].title%></td>
+                                                <td><%=data[i].office_location%></td>
+                                                <td>$<%=data[i].salary%></td>
+                                                <td><a href="jobdetail?jobId=<%=data[i].pid%>">More</a></td>
+                                            </tr>
+                                            <% } %>
+                                        </tbody>
+                                    </table>
+                                <% } %> -->
+                                    <table class="table table-hover" ng-show="jobs.length > 0">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>jobtitle</th>
+                                            <th>officelocation</th>
+                                            <th>salary</th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody>
+                                            <!-- <tr ng-repeat="x in jobs">
+                                                <td>{{x.pid}}</td>
+                                                <td>{{x.title}}</td>
+                                                <td>{{x.office_location}}</td>
+                                                <td>${{x.salary}}</td>
+                                                <td><a href="jobdetail?jobId={{x.pid}}">More</a></td>
+                                            </tr> -->
+                                            <tr ng-repeat="x in jobs | startFrom:currentPage*pageSize | limitTo:pageSize">
+                                                <td>{{x.pid}}</td>
+                                                <td>{{x.title}}</td>
+                                                <td>{{x.office_location}}</td>
+                                                <td>${{x.salary}}</td>
+                                                <td><a href="jobdetail?jobId={{x.pid}}">More</a></td>
+                                            </tr>
+                                            <tr>
+                                            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                                                Previous
+                                            </button>
+                                            {{currentPage+1}} / {{numberOfPages()}}
+                                            <button ng-disabled="currentPage >= jobs.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                                                Next
+                                            </button>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                               
                             </div>
-
+                            
 
                         </div>
                     </div>
@@ -99,11 +182,68 @@
 </body>
 <script>
 var app = angular.module('myApp', []);
+app.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        console.log(start);
+        return input.slice(start);
+    }
+});
 app.controller('myCtrl', function($scope, $http) {
-    $http.get("joblist").success(function (response){
-            $scope.jobs = response;
+    // $http.get("joblist").success(function (response){
+    //         $scope.jobs = response;
+    //     }
+    // );
+
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    // $scope.numberOfPages=function(){
+    //     return Math.ceil($scope.jobs.length/$scope.pageSize);                
+    // }
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.jobs.length/$scope.pageSize);            
+    }
+
+
+    $scope.myFunction = function() {
+        var req = {
+             method: 'POST',
+             url: '/jobsearchAJAX',
+             data: { title: $scope.title ,
+                     companyname: $scope.companyname,
+                     salarystart: $scope.salarystart,
+                     skill: $scope.skill,
+                     location: $scope.location,
+                     slaryend: $scope.salaryend
+             }
         }
-    );
+
+        $http(req).success(function (response){
+            $scope.jobs = response;
+            
+        });
+
+        
+    }
+
+
+    var req = {
+         method: 'POST',
+         url: '/jobsearchAJAX',
+         data: { title: $scope.title ,
+                 companyname: $scope.companyname,
+                 salarystart: $scope.salarystart,
+                 skill: $scope.skill,
+                 location: $scope.location,
+                 slaryend: $scope.salaryend
+         }
+    }
+
+    $http(req).success(function (response){
+        $scope.jobs = response;
+        // console.log(reseponse);
+    });
+
 });
 </script>
 

@@ -26,23 +26,18 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="text-muted"><i class="pe-7s-note2"></i> 
-                                Job Description
-                                <% if(!locals.params){ %>
-                                    =no job ID=
-                                <% } else { %>
-                                    <%= params %>
-                                    <a href="editpost?jobId=<%= params %>"><button class="btn btn-info btn-fill pull-right">Edit
+                                Job Description - <%= data.title%>
+                                
+                                    <a href="editpost?jobId=<%=data.pid%>"><button class="btn btn-info btn-fill pull-right">Edit
                                     </button></a>
-                                <% } %>
+                                    <a href="editpost?jobId=<%=data.pid%>"><button class="btn btn-info btn-fill pull-right">Delete
+                                    </button></a>
+
                                 </h4>
                             </div>
 
                             <div class="content table-responsive">
 
-                                <% if(!locals.params){ %>
-                                    <h1>no job ID</h1> <br> 
-                                    <%= params %>
-                                <% } else {%>
 
                                 <!-- TODO: check if AJAX can get the result -->
 
@@ -52,7 +47,9 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Job Title</label>
-                                                <p>{{job.ID}}</p>
+                                                <% if(data.title) { %> 
+                                                     <p><%= data.title %></p>
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -61,8 +58,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Office Location</label>
-                                                <label>Job Title</label>
-                                                <p>{{job.Country}}</p>
+                                                <% if(data.officeLocation) { %> 
+                                                     <p><%= data.officeLocation %></p>
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -70,7 +68,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Salary</label>
-                                                <p>{{job.Salary}}</p>
+                                                <% if(data.salary) { %> 
+                                                     <p><%= data.salary %></p>
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +79,9 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label>Responsibility</label>
-                                                <p>{{job.City}}</p>
+                                                <% if(data.responsibility) { %> 
+                                                     <p><%= data.responsibility %></p>
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +90,9 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label>Description</label>
-                                                <p>{{job.City}}</p>
+                                                <% if(data.description) { %> 
+                                                     <p><%= data.description %></p>
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +100,7 @@
                                 </form>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <a href="applicantlist?jobId=<%= params %>"><button class="btn btn-info btn-fill">View Applicants</button></a>
+                                        <a href="applicantlist?jobId=<%=data.pid%>"><button class="btn btn-info btn-fill">View Applicants</button></a>
                                     </div>
                                 </div>
 
@@ -104,12 +108,6 @@
                             </div>
 
 
-
-
-
-
-
-                                <% } %>
 
                                  <button class="btn btn-info btn-fill" onclick="goBack()">Go Back
                                 </button>

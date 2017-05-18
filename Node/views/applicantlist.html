@@ -26,51 +26,55 @@
                         <div class="card">
                                    <div class="header">
                                 <h4 class="text-muted"><i class="pe-7s-note2"></i> 
-                                Applicants List
-                                <% if(!locals.params){ %>
-                                    =no job ID=
-                                <% } else { %>
-                                     ==Job ID:<%= params %>
-                                <% } %>
+                                Applicants List 
                                 </h4>
                             </div>
 
-                            <div class="content table-responsive" ng-controller="myCtrl">
+                            <div class="content table-responsive" >
 
-                                <% if(!locals.params){ %>
-                                    <h1>no job ID</h1> <br> 
-                                    <%= params %>   
-                                <% } else {%>
 
                                 <!-- TODO: check if AJAX can get the result -->
-                                <table class="table table-hover" table-hover"  ng-show="jobs.length > 0">
+
+
+                                <% if(data.length > 0) { %>
+                                <table class="table table-hover" >
                                     <thead>
-                                        <th>FirstName</th>
-                                        <th>LastName</th>
-                                        <th>Introduction</th>
-                                        <th>Experience</th>
-                                        <th>Education</th>
-                                        <th>Skills</th>
+                                        <th>Application ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
                                         <th>Email</th>
+                                        <th>Status</th>
+                                        <th>URL</th>
+                                        <th></th>
+                                        <th></th>
                                         <th></th>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="x in jobs">
-                                            <td>{{x.ID}}</td>
-                                            <td>{{x.Name}}</td>
-                                            <td>${{x.Salary}}</td>
-                                            <td>{{x.Country}}</td>
-                                            <td>{{x.City}}</td>
-                                            <td>{{x.City}}</td>
-                                            <td>{{x.City}}</td>
-                                            <td><a href="applicantinfo?id={{x.ID}}">Applicant<a></td>
+
+                                        <% for(var i = 0; i < data.length; i++) { %>
+                                        <tr>
+                                            <td><%=data[i].aid%></td>
+                                            <td><%=data[i].firstName%></td>
+                                            <td><%=data[i].lastName%></td>
+                                            <td><%=data[i].email%></td>
+                                            <td><%=data[i].status%></td>
+                                            <% if(data[i].resumeurl) { %> 
+                                                <td><%=data[i].resumeurl%></td>
+                                            <% } else { %>
+                                                <td></td>
+                                            <% } %>
+                                            <% if(data[i].status === 'Pending'){ %>
+                                                <td><a href="companypending?action=Offered&id=<%=data[i].aid%>">Offer</a></td>
+                                                <td><a href="companypending?action=Rejected&id=<%=data[i].aid%>">Reject</a></td>
+                                            <% } else { %>
+                                                <td></td>
+                                                <td></td>
+                                            <% } %>
+                                            <td><a href="applicantinfo?id=<%=data[i].email%>">Applicant<a></td>
                                         </tr>
+                                        <% } %>
                                     </tbody>
                                 </table>
-
-
-                                
-
                                 <% } %>
 
                                  <button class="btn btn-info btn-fill" onclick="goBack()">Go Back

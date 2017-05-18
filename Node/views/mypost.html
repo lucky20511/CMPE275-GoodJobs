@@ -25,43 +25,54 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="text-muted"><i class="pe-7s-note2"></i> My Posts</h4>
+                                <h4 class="text-muted"><i class="pe-7s-note2"></i> My Posts </h4>
                             </div>
                             <!-- </div> -->
-                            <div class="content table-responsive" ng-controller="myCtrl">
-                                <table class="table table-hover" table-hover" ng-show="jobs.length > 0">
+                            <div class="content table-responsive" >
+
+                                <% if(data.length > 0) { %>
+                                <table class="table table-hover" table-hover" >
                                     <thead>
 
 
                                         <th>ID</th>
                                         <th>jobtitle</th>
-                                        <th>description</th>
-                                        <th>responsibility</th>
+                                        <!-- <th>description</th>
+                                        <th>responsibility</th> -->
                                         <th>officelocation</th>
                                         <th>salary</th>
-
+                                        <th>status</th>
+                                        <th></th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="x in jobs">
-                                            <td>{{x.ID}}</td>
-                                            <td>{{x.Name}}</td>
-                                            <td>${{x.Salary}}</td>
-                                            <td>{{x.Country}}</td>
-                                            <td>{{x.City}}</td>
-                                            <td>{{x.City}}</td>
-                                            <td><a href="jobdescription?jobId={{x.ID}}">Description<a></td>
-                                            <td><button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button></td>
+                                        <% for(var i = 0; i < data.length; i++) { %>
+                                        <tr>
+                                            <td><%=data[i].pid%></td>
+                                            <td><%=data[i].title%></td>
+                                            <!-- <td><%=data[i].description%></td>
+                                            <td><%=data[i].responsibility%></td> -->
+                                            <td><%=data[i].office_location%></td>
+                                            <td>$<%=data[i].salary%></td>
+                                            <td><%=data[i].status%></td>
+                                            <td><a href="jobdescription?jobId=<%=data[i].pid%>">Description</a></td>
+                                            <td>
+                                                <a href="editpost?jobId=<%=data[i].pid%>"><i class="fa fa-edit"></i></a>
+                                            </td>
+                                            <% if(data[i].status === 'Open'){ %>
+                                                <td><a href="positionstatus?action=Filled&id=<%=data[i].pid%>">Fill</a></td>
+                                                <td><a href="positionstatus?action=Cancelled&id=<%=data[i].pid%>">Cancel</a></td>
+                                            <% } else { %>
+                                                <td></td>
+                                                <td></td>
+                                            <% } %>
                                         </tr>
+                                        <% } %>
                                     </tbody>
                                 </table>
-
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -84,10 +95,10 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
-    $http.get("joblist").success(function (response){
-            $scope.jobs = response;
-        }
-    );
+    // $http.get("joblist").success(function (response){
+    //         $scope.jobs = response;
+    //     }
+    // );
 });
 </script>
 	<!-- <script type="text/javascript">

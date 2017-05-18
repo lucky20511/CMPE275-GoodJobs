@@ -100,6 +100,17 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label>Picture</label>
+                                                <p><% if(data.picture) { %> 
+                                                     <%= data.picture %> 
+                                                    <% } %></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <a href="editprofile"><button type="submit" class="btn btn-info btn-fill pull-right">Edit <i class="pe-7s-pen"></i></button></a>
                                     <div class="clearfix"></div>
                             </div>
@@ -108,18 +119,20 @@
                     <div class="col-md-4">
                         <div class="card card-user">
                             <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                            
                             </div>
                             <div class="content">
                                 <div class="author">
-                                    <img class="avatar border-gray" src="assets/img/faces/face-g.jpg" alt="..."/>
+                                    <% if(data.picture) { %> 
+                                <img src="<%=data.picture%>" alt="..."/ style="width:200px;">
+                            <% } else { %>
+                                <img src="http://leadersinheels.com/wp-content/uploads/facebook-default.jpg" alt="..."/ style="width:200px;">
+                            <% } %>
                                       <h4 class="title"><%= data.firstName %> <%= data.lastName %> </h4>
                                 </div>
-                                <!-- <p class="description text-center"> "Lamborghini Mercy <br>
-                                                    Your chick she so thirsty <br>
-                                                    I'm in that two seat Lambo"
-                                </p> -->
+
                             </div>
+
                             
                         </div>
                     </div>

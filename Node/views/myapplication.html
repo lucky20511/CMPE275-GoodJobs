@@ -29,34 +29,54 @@
                             </div>
                             <!-- </div> -->
                             <div class="content table-responsive">
-                                <table class="table table-hover" table-hover" ng-controller="myCtrl" ng-show="jobs.length > 0">
 
+                                <% if(data.length > 0) { %>
+                                <table class="table table-hover" >
                                     <thead>
-                                        <th>ID</th>
-                                        <th>First tName</th>
-                                        <th>Last tName</th>
-                                        <th>Position</th>
+                                        <th>Application ID</th>
+                                        <th>Position ID</th>
+                                        <th>Position Title</th>
+                                        <th>Position Status</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
                                         <th>Email</th>
-                                        <th>Resume URL</th>
-                                        <th>Status</th>                     
+                                        <th>Status</th>
+                                        <th>URL</th>
+                                        <th></th>
+                                        <th></th>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="x in jobs">
-                                            <td>{{x.ID}}</td>
-                                            <td>{{x.Name}}</td>
-                                            <td>{{x.Name}}</td>
-                                            <td>{{x.Country}}</td>
-                                            <td>{{x.City}}</td>
-                                            <td>${{x.Salary}}</td>
-                                            <td ng-if="x.Status == 'Rejected'"><a href="">Rejected<a></td>
-                                            <td ng-if="x.Status == 'Offererd'"><a href="">Offererd<a></td>
-                                            <td ng-if="x.Status == 'Pending'"><a href="">Pending<a></td>
-                                            
-                                            
+
+                                        <% for(var i = 0; i < data.length; i++) { %>
+                                        <tr>
+                                            <td><%=data[i].aid%></td>
+                                            <td><%=data[i].pid%></td>
+                                            <td><%=data[i].jobTitle%></td>
+                                            <td><%=data[i].jobStatus%></td>
+                                            <td><%=data[i].firstName%></td>
+                                            <td><%=data[i].lastName%></td>
+                                            <td><%=data[i].email%></td>
+                                            <td><%=data[i].status%></td>
+                                            <% if(data[i].resumeUrl) { %> 
+                                                <td><a href="<%=data[i].resumeUrl%>"><%=data[i].resumeUrl%></a></td>
+                                            <% } else { %>
+                                                <td></td>
+                                            <% } %>
+                                            <% if(data[i].status === 'Offered'){ %>
+                                                <td><a href="offer?action=OfferAccepteded&id=<%=data[i].aid%>">OfferAccept</a></td>
+                                                <td><a href="offer?action=OfferRejected&id=<%=data[i].aid%>">OfferReject</a></td>
+                                            <% } else if(data[i].status === 'Pending'){ %>
+                                                <td><a href="jobseekerpending?action=Cancelled&id=<%=data[i].aid%>">Cancel</a></td>
+                                                <td></td>
+                                            <% } else { %>
+                                                <td></td>
+                                                <td></td>
+                                            <% } %>
                                         </tr>
+                                        <% } %>
                                     </tbody>
                                 </table>
-
+                                <% } %>
                             </div>
                         </div>
                     </div>

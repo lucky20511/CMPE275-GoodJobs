@@ -17,7 +17,7 @@
         <!-- Right main panel - content -->
         <div class="content">
             
-            <div class="container-fluid" ng-controller="myCtrl" ng-show="job">
+            <div class="container-fluid" ng-controller="myCtrl">
                 
                 <div class="row">
                     <div class="col-md-8">
@@ -75,7 +75,16 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label>Image URL</label>
+                                                <p><% if(data.image_url) { %> 
+                                                     <%= data.image_url %> 
+                                                    <% } %></p>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <a href="editcompany"><button type="submit" class="btn btn-info btn-fill pull-right">Edit <i class="pe-7s-pen"></i></button></a>
                                     <div class="clearfix"></div>
@@ -87,13 +96,20 @@
                     <div class="col-md-4">
                         <div class="card card-user">
                             <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+
                             </div>
                             <div class="content">
                                 <div class="author">
-                                    <img class="avatar border-gray" src="assets/img/faces/face-g.jpg" alt="..."/>
+                                    <% if(data.image_url) { %> 
+                                <img src="<%=data.image_url%>" alt="..."/ style="width:200px;">
+                            <% } else { %>
+                                <img src="http://leadersinheels.com/wp-content/uploads/facebook-default.jpg" alt="..."/ style="width:200px;">
+                            <% } %>
                                       <h4 class="title"><%= data.name %> </h4>
                                 </div>
+
+                            </div>
+
                                 
                             </div>
                             

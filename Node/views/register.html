@@ -12,33 +12,39 @@
 
 <script>
 </script>
-<div class="" id="myModal">
-    <div class="modal-dialog">
+<div class="" id="">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content account-wall">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <h1 class="text-center">Sign up</h1>
+            <div class="col-md-5 col-md-offset-1">
             <br>
-                <h1 class="text-center">Sign up</h1>
-                <div class="" >
+                <h4 class="text-center">New Jobseeker</h4>
+            
                     <form class="form-signin" action="/register" method="post">
-                        <input ng-show="content == 'user'" type="text" class="form-control" name="firstname" placeholder="First Name" > <!-- required autofocus -->
-                        <input ng-show="content == 'user'"  type="text" class="form-control" name="lastname" placeholder="Last Name" >  <!-- required -->
-                        <input ng-show="content == 'company'" type="text" class="form-control" name="name" placeholder="Company Name" > <!-- required autofocus -->
-                        <input type="text" class="form-control" name="username" placeholder="Email" required>
+                        <input type="text" class="form-control" name="firstname" placeholder="First Name" required autofocus> <!-- required autofocus -->
+                        <input type="text" class="form-control" name="lastname" placeholder="Last Name" required>  <!-- required -->
+
+                        <input type="text" class="form-control" name="experience" placeholder="Experience" required>
+                        <input type="text" class="form-control" name="education" placeholder="Education" required>
+                        <input type="text" class="form-control" name="skill" placeholder="Skills" required>
+
+                        <input type="text" class="form-control" name="picture" placeholder="Picture URL">
+                        <input type="text" class="form-control" name="introduction" placeholder="Introduction">
+
+
+
+                        <input type="email" class="form-control" name="username" placeholder="Email" required>
                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                         <input type="password" class="form-control" placeholder="Confirm Password" required>
+                        <input type="hidden" name="type" value="user">
                         <button class="btn btn-lg btn-fill btn-info btn-block" type="submit">Sign up</button>
                         
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="pull-left" >
-                                <!-- <input ng-model="subscription.checked" ng-click="updateSelection(0)" type="checkbox">Job Seeker
-                                <input ng-model="subscription.checked" ng-click="updateSelection(1)" type="checkbox">Company -->
-
-                                <!-- <input type="checkbox" ng-checked="type=='user'" ng-true-value="'user'" ng-model="type">Job Seeker
-                                <input type="checkbox" ng-checked="type=='company'" ng-true-value="'company'" ng-model="type">Company
-                                {{type}} -->
+    
                                 <ng-form name="form1">
                                 <input id="SSS" type="radio" name="type" value="user" ng-model="content" required checked="checked">
                                 Job Seeker
@@ -49,21 +55,36 @@
                                 Company
                                 </ng-form>
 
-                                <!-- <label for="first">Show first content</label>
-                                <input id="first" type="radio" name="content" ng-model="content" value="first">
-                                <br />
-                                <label for="other">Show other content</label>
-                                <input id="other" type="radio" name="content" ng-model="content" value="other">
-                                <div class="wrapper">
-                                  <p ng-show="content == 'first'">This is the first content!</p>
-                                  <h2 ng-show="content == 'other'">This is the other content!</h2>
-                                </div> -->
                             </div>
 
                             <a href="/login" class="pull-right new-account">Has an account?</a><span class="clearfix"></span>
-                        </div>
+                        </div> -->
                     </form>
-                </div>
+
+                <br>
+
+            </div>
+            <div class="col-md-5">
+            <br>
+                <h4 class="text-center">New Company</h4>
+            
+                    <form class="form-signin" action="/register" method="post">
+                        <input type="text" class="form-control" name="name" placeholder="Company Name" required autofocus> 
+                        <input type="text" class="form-control" name="website" placeholder="Website" required>
+                        <input type="text" class="form-control" name="address" placeholder="Address" required>
+                        <input type="text" class="form-control" name="description" placeholder="Description" required>
+                        <input type="text" class="form-control" name="image_url" placeholder="Image URL" required>
+
+
+                        <input type="email" class="form-control" name="username" placeholder="Email" required>
+                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                        <input type="password" class="form-control" placeholder="Confirm Password" required>
+                        <input type="hidden" name="type" value="company">
+                        <button class="btn btn-lg btn-fill btn-info btn-block" type="submit">Sign up</button>
+
+                        <a href="/login" class="pull-right new-account">Has an account?</a><span class="clearfix"></span>
+                    </form>
+
                 <br>
 
             </div>
